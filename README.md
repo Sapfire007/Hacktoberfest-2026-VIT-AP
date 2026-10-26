@@ -595,6 +595,6 @@ recogniser, or neither is the weak link.
 
 **Owner** · Saptarshi Bose — B.Tech CSE, VIT-AP University
 
-*Delivered incrementally, feature by feature, in consultation with the client.*
+*Delivered incrementally, feature by feature, in consultation with the client. Submitted as a part of Hacktoberfest 2026 challenge - VIT-AP*
 
 </div>
