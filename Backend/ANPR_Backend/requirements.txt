@@ -1,0 +1,31 @@
+# VISION ANPR Backend
+#
+# Install into a DEDICATED virtual environment, not the biometric service's. DeepFace
+# pulls in TensorFlow, which pins CUDA and cuDNN versions that onnxruntime-gpu does not
+# want; sharing one environment produces a service where whichever of the two loaded
+# second silently falls back to CPU.
+#
+#   py -3.11 -m venv venv_anpr
+#   venv_anpr\Scripts\activate
+#   pip install -r requirements.txt
+#
+# --- API ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- ANPR pipeline ---
+# fast-alpr bundles an MIT-licensed YOLOv9-t ONNX plate detector (open-image-models,
+# trained across 65+ countries' plate formats) with fast-plate-ocr's plate-specific
+# recogniser. The [onnx-gpu] extra brings onnxruntime-gpu, which is what uses the 4060.
+# On a machine with no NVIDIA GPU, install fast-alpr[onnx] instead.
+fast-alpr[onnx-gpu]==0.4.0
+
+# --- Imaging ---
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+
+# --- Config ---
+python-dotenv==1.0.1

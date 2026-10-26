@@ -1,0 +1,11 @@
+# EAS Ignore
+node_modules/
+.expo/
+android/
+ios/
+dist/
+web-build/
+.git/
+*.apk
+*.aab
+*.tar.gz

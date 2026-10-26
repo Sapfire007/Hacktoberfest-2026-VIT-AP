@@ -1,0 +1,309 @@
+================================================================================
+                    EMOJI ICONS USED IN VISION APP
+================================================================================
+Generated: 2026-10-08
+Purpose: Comprehensive list of all emojis currently used as icons in the UI
+
+
+================================================================================
+                          COMPLETE EMOJI LIST
+================================================================================
+
+Navigation & Layout Icons:
+--------------------------
+🏠  Home icon (Student/Faculty tabs, navigation)
+👤  Profile icon (tab navigation, user identity)
+📋  Visits/Requests list icon (tab navigation, documents)
+🏢  Building/Office icon (RequestCard default, general destination)
+👨‍👩‍👧  Sponsor icon (Student tab - family/sponsorship)
+
+Actions & Interactions:
+-----------------------
+🔍  Search icon (SearchBar component, search functionality)
+📷  Camera icon (biometric capture, ID upload, vehicle scanning, ANPR)
+🖼️  Gallery/Image icon (photo gallery selection, image picking)
+📱  Mobile/App icon (AccountLinkCard - sent to app notification)
+
+Vehicles:
+---------
+🚗  Car icon (4-wheeler, vehicle registration, vehicle questions)
+🏍️  Motorcycle icon (2-wheeler vehicles)
+🚚  Truck icon (heavy vehicles, other vehicle types)
+
+Status & Feedback:
+------------------
+✅  Success/Approved icon (notifications, success states, confirmations)
+❌  Error/Rejected icon (notifications, error states, failures)
+⚠️  Warning icon (WatchlistAlert, alerts, invalid states, caution messages)
+🚨  Alert/Emergency icon (NotificationItem alert type, critical warnings)
+ℹ️  Info icon (AlertBanner info type, informational messages)
+
+Security & Access:
+------------------
+🔒  Locked/Secure icon (PermitCard awaiting verification, security)
+🔐  Security lock icon (security features)
+🏛️  Gate/Institution icon (PermitCard gate verification notice, campus building)
+🚪  Entry icon (NotificationItem entry type)
+🏃  Exit icon (NotificationItem exit type - person running)
+🛡️  Shield icon (security, protection)
+
+System & Technical:
+-------------------
+🔔  Notification bell icon (NeuHeader notifications)
+⚡  Lightning icon (AlertBanner offline type, torch on, fast actions)
+💡  Light bulb icon (torch off, ideas, help)
+☁️  Cloud icon (PermitCard offline availability, cloud sync)
+⏱️  Stopwatch icon (timing, duration)
+⏳  Hourglass icon (loading, waiting, camera initialization)
+⚙️  Settings icon (profile settings link)
+
+Documents & Data:
+-----------------
+📧  Email icon (verify-email screen, email verification)
+🗂️  File cabinet icon (EmptyState for history, no past visits)
+🎯  Target icon (destination, purpose, goals)
+
+Visual Indicators:
+------------------
+✓   Checkmark (button labels: approve, activate, confirm)
+✕   Cross/X mark (button labels: cancel, deny, reject, skip)
+▼   Down arrow (dropdown indicators)
+▲   Up arrow (expandable sections)
+●   Dot/Circle (bullet points, indicators)
+
+
+================================================================================
+                        DETAILED USAGE BY COMPONENT
+================================================================================
+
+Tab Navigation:
+--------------
+File: src/app/(student)/_layout.tsx
+- 🏠  Home tab
+- 👨‍👩‍👧  Sponsor tab  
+- 📋  Sponsored Visits tab
+- 👤  Profile tab
+
+File: src/app/(faculty)/_layout.tsx
+- 🏠  Home tab
+- 📋  Requests tab
+- 👥  Manage tab
+- 👤  Profile tab
+
+File: src/app/(security)/_layout.tsx
+- 🏠  Home tab
+- 👥  On Campus tab
+- 📋  History tab
+- 👤  Profile tab
+
+Search Component:
+----------------
+File: src/components/ui/SearchBar.tsx
+- 🔍  Search icon (left side of search input)
+
+Notifications:
+-------------
+File: src/components/ui/NeuHeader.tsx
+- 🔔  Notification bell icon
+
+File: src/components/ui/NotificationItem.tsx
+Type-based icons:
+- ✅  Approval notifications
+- ❌  Rejection notifications
+- 🚪  Entry notifications
+- 🏃  Exit notifications
+- 🚨  Alert notifications
+- ℹ️  Info notifications
+
+Alert Banners:
+-------------
+File: src/components/ui/AlertBanner.tsx
+Type-based icons:
+- ℹ️  Info alerts
+- ⚠️  Warning alerts
+- 🚨  Error alerts
+- ✅  Success alerts
+- ⚡  Offline alerts
+
+Permits & Cards:
+---------------
+File: src/components/ui/PermitCard.tsx
+- ☁️  Offline availability indicator
+- 🔒  Awaiting gate verification label
+- 🏛️  Visit gate for verification notice
+
+File: src/components/ui/RequestCard.tsx
+- 🏢  Default building icon (customizable via props)
+
+File: src/components/ui/VehicleCard.tsx
+- 🏍️  2-wheeler vehicles
+- 🚗  4-wheeler vehicles
+- 🚚  Heavy/other vehicles
+
+Security Components:
+-------------------
+File: src/components/gate/WatchlistAlert.tsx
+- ⚠️  Watchlist match warning title
+
+File: src/components/gate/AccountLinkCard.tsx
+- 📱  Sent to VISION app message
+
+Biometric Capture:
+-----------------
+File: src/components/ui/BiometricCaptureFrame.tsx
+- 📷  Camera permission prompt
+
+File: src/components/biometric/BiometricCapture.tsx
+- ⏳  Camera initialization/loading
+
+Security Screens:
+----------------
+File: src/app/(security)/permit-verify.tsx
+- ❌  Verification failed icon
+- 👤  Visitor name badge
+- 🎯  Destination badge
+- 🚗  Vehicle question and registration
+- ⚠️  No identity document warning
+
+File: src/app/(security)/permit-checkin.tsx
+- 📷  Scan number plate action
+
+File: src/app/(security)/on-campus.tsx
+- 🔍  No search results
+- 🏛️  Empty campus state
+
+File: src/app/(security)/register.tsx
+- 📷  Scan number plate button
+
+Main App Screens:
+----------------
+File: src/app/(main)/home.tsx
+- ⚙️  Profile/settings link
+
+File: src/app/(main)/history.tsx
+- 🗂️  Empty history state
+
+File: src/app/(main)/vehicles/add.tsx
+- 📷  Scan vehicle number plate
+
+File: src/app/(main)/requests/[id].tsx
+- ❌  Error/not found state
+
+File: src/app/(main)/requests/new.tsx
+- ⚠️  Invalid time range warning
+
+File: src/app/(main)/permit/[id].tsx
+- ❌  Permit not found error
+- ⚠️  Permit not active warning
+- 🔒  Security note icon
+
+Onboarding Screens:
+------------------
+File: src/app/(onboarding)/verify-email.tsx
+- ✅  Email verified icon
+- 📧  Email verification icon
+
+File: src/app/(onboarding)/identity-details.tsx
+- 📷  Camera capture button
+- 🖼️  Gallery picker button
+- ⚡  Torch on indicator
+- 💡  Torch off indicator
+
+Button Labels (using text symbols):
+-----------------------------------
+✓ - Approve/Activate/Confirm actions
+✕ - Reject/Cancel/Deny actions
+▼ - Dropdown/collapse indicators
+▲ - Expand indicators
+
+
+================================================================================
+                            USAGE PATTERNS
+================================================================================
+
+1. STATUS INDICATORS:
+   - Success: ✅
+   - Error/Failure: ❌
+   - Warning: ⚠️
+   - Info: ℹ️
+   - Alert: 🚨
+
+2. NAVIGATION:
+   - Home: 🏠
+   - Profile: 👤
+   - Lists/Documents: 📋
+   - Building/Location: 🏢 🏛️
+
+3. MEDIA ACTIONS:
+   - Take Photo: 📷
+   - Select from Gallery: 🖼️
+
+4. VEHICLE TYPES:
+   - Two-wheeler: 🏍️
+   - Four-wheeler: 🚗
+   - Heavy vehicle: 🚚
+
+5. SECURITY/ACCESS:
+   - Locked/Secured: 🔒 🔐
+   - Gate/Institution: 🏛️
+   - Entry: 🚪
+   - Exit: 🏃
+
+6. SYSTEM STATE:
+   - Loading: ⏳
+   - Timing: ⏱️
+   - Offline: ☁️ ⚡
+   - Notifications: 🔔
+
+
+================================================================================
+                        DESIGN CONSISTENCY NOTES
+================================================================================
+
+1. All emojis are used directly in Text components (no icon libraries)
+2. Emojis provide visual cues without translation requirements
+3. Consistent mapping: same emoji = same meaning across app
+4. Size controlled via fontSize in StyleSheet
+5. Colors remain default emoji colors (not customized)
+6. Platform renders emojis natively (iOS/Android specific appearance)
+
+
+================================================================================
+                              TOTAL COUNT
+================================================================================
+
+Unique Emojis: 32
+- Navigation: 5
+- Actions: 4
+- Vehicles: 3
+- Status: 5
+- Security: 6
+- System: 7
+- Documents: 3
+- Visual: 3
+
+Most Frequently Used:
+1. 📷 Camera (biometric, ID upload, vehicle scanning)
+2. ✅ Success/Approval (multiple status indicators)
+3. ❌ Error/Rejection (error states, failures)
+4. 🚗 Car (vehicle registration and questions)
+5. ⚠️ Warning (alerts, invalid states)
+
+
+================================================================================
+                              RECOMMENDATIONS
+================================================================================
+
+Current emoji usage is well-distributed across:
+- Navigation (tabs, routing)
+- User feedback (success, errors, warnings)
+- Content categories (vehicles, documents, security)
+- Interactive elements (buttons, actions)
+- System states (loading, offline, notifications)
+
+Emojis provide immediate visual recognition without language barriers.
+Consistent use throughout the app creates predictable UI patterns.
+
+================================================================================
+                                  END
+================================================================================

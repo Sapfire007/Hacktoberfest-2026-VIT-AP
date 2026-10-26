@@ -1,0 +1,21 @@
+rules_version = '2';
+
+// VISION — Cloud Storage security rules
+//
+// Deny all client access, as firestore.rules does. The only writer is Node_Backend
+// (POST /api/auth/upload-id-document), through the Admin SDK, which these rules do not
+// apply to. What would be stored here are photographs of government ID documents; a
+// bucket left in "test mode" would let anyone holding the app's public config list and
+// download every one of them.
+//
+// The project runs on the Spark plan with no bucket today, so nothing is uploaded to
+// Storage yet. Publish these before a bucket is ever enabled:
+// Firebase console → Storage → Rules → paste → Publish, or
+//   firebase deploy --only storage
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

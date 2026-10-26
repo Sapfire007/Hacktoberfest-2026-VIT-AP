@@ -1,0 +1,21 @@
+# VISION Biometric Backend dependencies
+# DeepFace and TensorFlow are not supported on Python 3.14 in this project.
+# Use Python 3.11 for this backend virtual environment.
+
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+python-multipart>=0.0.6
+opencv-python==5.0.0.93
+
+numpy==2.4.6
+scipy>=1.14.0
+cryptography>=42.0.0
+pydantic==2.13.4
+pydantic-settings>=2.9.0
+python-dotenv==1.2.2
+Pillow==12.3.0
+
+deepface==0.0.100
+tensorflow==2.21.0
+tf-keras==2.21.0
+torch>=2.6.0

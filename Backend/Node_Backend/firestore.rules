@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// VISION — Firestore security rules
+//
+// Deny all client access. Every read and write goes through Node_Backend, which uses the
+// Admin SDK and is not subject to these rules (VISION.md §5.1: "the app never writes to
+// Firestore directly").
+//
+// This matters because the app's Firebase web config is public — it ships inside every
+// installed app. With permissive rules, anyone holding it could read every visitor's
+// details, read faculty password hashes, and approve any visit request. With these rules,
+// that config can no longer reach the database at all.
+//
+// Deploy (Firebase console → Firestore Database → Rules → paste → Publish), or with the CLI:
+//   firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

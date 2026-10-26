@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data URI Image Viewer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            resize: vertical;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .image-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .success {
+            color: #388e3c;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .info {
+            color: #1976d2;
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .download-btn {
+            background: #28a745;
+            margin-left: 10px;
+        }
+        .download-btn:hover {
+            background: #218838;
+        }
+        .clear-btn {
+            background: #6c757d;
+            margin-left: 10px;
+        }
+        .clear-btn:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>📸 Data URI Image Viewer</h1>
+    
+    <div class="input-section">
+        <h2>Paste Data URI</h2>
+        <textarea id="dataUriInput" placeholder="Paste your data URI here (e.g., data:image/jpeg;base64,/9j/4AAQ...)"></textarea>
+        <button onclick="viewImage()">View Image</button>
+        <button onclick="downloadImage()" class="download-btn">Download Image</button>
+        <button onclick="clearAll()" class="clear-btn">Clear</button>
+        <div id="message"></div>
+    </div>
+
+    <div class="image-section" id="imageSection" style="display: none;">
+        <h2>Image Preview</h2>
+        <img id="previewImage" class="preview-image" alt="Preview" />
+        <div id="imageInfo" class="info"></div>
+    </div>
+
+    <script>
+        function viewImage() {
+            const input = document.getElementById('dataUriInput');
+            const dataUri = input.value.trim();
+            const message = document.getElementById('message');
+            const imageSection = document.getElementById('imageSection');
+            const previewImage = document.getElementById('previewImage');
+            const imageInfo = document.getElementById('imageInfo');
+
+            // Clear previous messages
+            message.innerHTML = '';
+
+            if (!dataUri) {
+                message.innerHTML = '<div class="error">Please paste a data URI first.</div>';
+                return;
+            }
+
+            // Validate data URI format
+            if (!dataUri.startsWith('data:image/')) {
+                message.innerHTML = '<div class="error">Invalid data URI. Must start with "data:image/"</div>';
+                return;
+            }
+
+            try {
+                // Set the image source
+                previewImage.src = dataUri;
+                
+                // Show the image section
+                imageSection.style.display = 'block';
+                
+                // Display success message
+                message.innerHTML = '<div class="success">✓ Image loaded successfully!</div>';
+
+                // Extract image info
+                const parts = dataUri.split(';');
+                const mimeType = parts[0].split(':')[1];
+                const encoding = parts[1] ? parts[1].split(',')[0] : 'base64';
+                const dataLength = dataUri.length;
+                const estimatedSize = Math.round((dataLength * 0.75) / 1024);
+
+                imageInfo.innerHTML = `
+                    <strong>Image Info:</strong><br>
+                    MIME Type: ${mimeType}<br>
+                    Encoding: ${encoding}<br>
+                    Data URI Length: ${dataLength.toLocaleString()} characters<br>
+                    Estimated Size: ~${estimatedSize} KB
+                `;
+
+                // Scroll to image
+                imageSection.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                message.innerHTML = `<div class="error">Error loading image: ${error.message}</div>`;
+            }
+        }
+
+        function downloadImage() {
+            const dataUri = document.getElementById('dataUriInput').value.trim();
+            const message = document.getElementById('message');
+
+            if (!dataUri) {
+                message.innerHTML = '<div class="error">No image to download. Please view an image first.</div>';
+                return;
+            }
+
+            try {
+                // Extract mime type and extension
+                const mimeMatch = dataUri.match(/data:(image\/\w+);/);
+                const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+                const extension = mimeType.split('/')[1];
+
+                // Create a download link
+                const link = document.createElement('a');
+                link.href = dataUri;
+                link.download = `identity-photo-${Date.now()}.${extension}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                message.innerHTML = '<div class="success">✓ Image download started!</div>';
+            } catch (error) {
+                message.innerHTML = `<div class="error">Error downloading image: ${error.message}</div>`;
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('dataUriInput').value = '';
+            document.getElementById('message').innerHTML = '';
+            document.getElementById('imageSection').style.display = 'none';
+            document.getElementById('previewImage').src = '';
+            document.getElementById('imageInfo').innerHTML = '';
+        }
+
+        // Handle image load success
+        document.getElementById('previewImage').addEventListener('load', function() {
+            const img = this;
+            const imageInfo = document.getElementById('imageInfo');
+            const currentInfo = imageInfo.innerHTML;
+            imageInfo.innerHTML = currentInfo + `<br>Image Dimensions: ${img.naturalWidth} × ${img.naturalHeight} px`;
+        });
+
+        // Handle image load error
+        document.getElementById('previewImage').addEventListener('error', function() {
+            const message = document.getElementById('message');
+            message.innerHTML = '<div class="error">Failed to load image. The data URI may be corrupted or incomplete.</div>';
+        });
+    </script>
+</body>
+</html>

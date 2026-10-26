@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "348537307647",
+    "project_id": "vision-1caa0",
+    "storage_bucket": "vision-1caa0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348537307647:android:315dd47deec0e00646a7ca",
+        "android_client_info": {
+          "package_name": "com.vision.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348537307647-boibodb921r7id9npt20e1p6b20fancm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vision.app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "348537307647-vr44b5bl9tb67ium20jv6p3l4oif0o2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuKPsddEYPSaJyWMs8ZWj_zeuey1_uKow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348537307647-ibiaj2vqovbblimq8ueedq8chskro32a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

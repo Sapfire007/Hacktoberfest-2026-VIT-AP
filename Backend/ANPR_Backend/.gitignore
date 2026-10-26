@@ -1,0 +1,16 @@
+venv_anpr/
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Captured plate crops are photographs of real vehicles at a real gate. They are training
+# data, not source, and they do not belong in version control.
+data/crops/
+data/datasets/
+data/runs/
+models/*.onnx
+models/*.pt
+
+# ANPR model weights - downloaded on first run (50-100MB each)
+.anpr/weights/

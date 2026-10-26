@@ -1,0 +1,13 @@
+/mcp.json
+.venv-tf
+.vscode/
+venv_deepface/
+
+# Secrets, anywhere in the repository. Each service also ignores its own; this is the
+# safety net for a new folder or a stray copy.
+.env
+.env.*
+!.env.example
+serviceAccountKey*.json
+*firebase-adminsdk*.json
+Backend/Biometric_Backend/.deepface/

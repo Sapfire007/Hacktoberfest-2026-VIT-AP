@@ -1,0 +1,37 @@
+# VISION ANPR Backend - CPU-ONLY variant
+#
+# Use this instead of requirements.txt on a machine with no NVIDIA GPU. The only
+# difference is the fast-alpr extra: [onnx] rather than [onnx-gpu], which skips the
+# ~1.5 GB CUDA runtime that would never be loaded anyway.
+#
+# Everything else is identical. The service, the API and the results are the same - only
+# the per-frame latency changes. Keep DEVICE=auto in .env; it picks the CPU on its own.
+#
+# Install into a DEDICATED virtual environment, not the biometric service's. DeepFace
+# pulls in TensorFlow, which pins CUDA and cuDNN versions that onnxruntime-gpu does not
+# want; sharing one environment produces a service where whichever of the two loaded
+# second silently falls back to CPU.
+#
+#   py -3.11 -m venv venv_anpr
+#   venv_anpr\Scripts\activate
+#   pip install -r requirements.txt
+#
+# --- API ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- ANPR pipeline ---
+# fast-alpr bundles an MIT-licensed YOLOv9-t ONNX plate detector (open-image-models,
+# trained across 65+ countries' plate formats) with fast-plate-ocr's plate-specific
+# recogniser. The [onnx] extra brings the CPU build of ONNX Runtime.
+fast-alpr[onnx]==0.4.0
+
+# --- Imaging ---
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+
+# --- Config ---
+python-dotenv==1.0.1
